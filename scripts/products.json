@@ -1,9 +1,9 @@
 {
   "categories": [
-    { "key": "remeras", "description": "Remeras" },
-    { "key": "pantalones", "description": "Pantalones" },
-    { "key": "calzado", "description": "Calzado" },
-    { "key": "accesorios", "description": "Accesorios" }
+    { "key": "remeras", "description": "Remeras", "order": 1, "tagline": "Básicas, oversize y estampadas", "image": "/images/cat-remeras.webp" },
+    { "key": "pantalones", "description": "Pantalones", "order": 2, "tagline": "Jeans, chinos y cargos", "image": "/images/cat-pantalones.webp" },
+    { "key": "calzado", "description": "Calzado", "order": 3, "tagline": "Zapatillas y botas", "image": "/images/cat-calzado.webp" },
+    { "key": "accesorios", "description": "Accesorios", "order": 4, "tagline": "Gorras, mochilas y cinturones", "image": "/images/cat-accesorios.webp" }
   ],
   "items": [
     {
@@ -11,96 +11,108 @@
       "category": "remeras",
       "price": 18500,
       "stock": 12,
-      "image": "/images/remera-oversize-negra.svg",
-      "description": "Remera de corte oversize en algodón peinado 24/1. Color negro liso, cuello redondo reforzado. Ideal para un look urbano y relajado."
+      "image": "/images/remera-oversize-negra.webp",
+      "description": "Remera de corte oversize en algodón peinado 24/1. Color negro liso, cuello redondo reforzado. Ideal para un look urbano y relajado.",
+      "featured": true
     },
     {
       "title": "Remera Estampada Retro Wave",
       "category": "remeras",
       "price": 21000,
       "stock": 8,
-      "image": "/images/remera-retro-wave.svg",
-      "description": "Remera con estampa retro wave en frente. Algodón 100% de alta densidad, estampado en serigrafía de larga duración."
+      "image": "/images/remera-retro-wave.webp",
+      "description": "Remera con estampa retro wave en frente. Algodón 100% de alta densidad, estampado en serigrafía de larga duración.",
+      "featured": false
     },
     {
       "title": "Remera Básica Blanca",
       "category": "remeras",
       "price": 15000,
       "stock": 20,
-      "image": "/images/remera-basica-blanca.svg",
-      "description": "La básica infaltable: remera blanca de algodón, calce regular. Perfecta para usar sola o como base de cualquier outfit."
+      "image": "/images/remera-basica-blanca.webp",
+      "description": "La básica infaltable: remera blanca de algodón, calce regular. Perfecta para usar sola o como base de cualquier outfit.",
+      "featured": false
     },
     {
       "title": "Jean Slim Fit Azul",
       "category": "pantalones",
       "price": 42000,
       "stock": 10,
-      "image": "/images/jean-slim-azul.svg",
-      "description": "Jean slim fit en denim azul medio con elastano para mayor comodidad. Cinco bolsillos y lavado suave."
+      "image": "/images/jean-slim-azul.webp",
+      "description": "Jean slim fit en denim azul medio con elastano para mayor comodidad. Cinco bolsillos y lavado suave.",
+      "featured": false
     },
     {
       "title": "Jogger Cargo Verde",
       "category": "pantalones",
       "price": 38500,
       "stock": 7,
-      "image": "/images/jogger-cargo-verde.svg",
-      "description": "Jogger cargo verde militar con bolsillos laterales con botón y puños elastizados. Gabardina liviana, cómoda y resistente."
+      "image": "/images/jogger-cargo-verde.webp",
+      "description": "Jogger cargo verde militar con bolsillos laterales con botón y puños elastizados. Gabardina liviana, cómoda y resistente.",
+      "featured": true
     },
     {
       "title": "Pantalón Chino Beige",
       "category": "pantalones",
       "price": 36000,
       "stock": 9,
-      "image": "/images/chino-beige.svg",
-      "description": "Chino beige de calce recto, ideal para looks smart casual. Tela de algodón con un toque de elastano."
+      "image": "/images/chino-beige.webp",
+      "description": "Chino beige de calce recto, ideal para looks smart casual. Tela de algodón con un toque de elastano.",
+      "featured": false
     },
     {
       "title": "Zapatillas Urbanas Blancas",
       "category": "calzado",
       "price": 78000,
       "stock": 6,
-      "image": "/images/zapatillas-urbanas-blancas.svg",
-      "description": "Zapatillas urbanas blancas de cuero sintético con suela de goma vulcanizada. Un clásico que combina con todo."
+      "image": "/images/zapatillas-urbanas-blancas.webp",
+      "description": "Zapatillas urbanas blancas de cuero sintético con suela de goma vulcanizada. Un clásico que combina con todo.",
+      "featured": true
     },
     {
       "title": "Zapatillas Running Grises",
       "category": "calzado",
       "price": 85000,
       "stock": 5,
-      "image": "/images/zapatillas-running-grises.svg",
-      "description": "Zapatillas running grises con upper de mesh respirable y mediasuela con amortiguación. Para entrenar o para el día a día."
+      "image": "/images/zapatillas-running-grises.webp",
+      "description": "Zapatillas running grises con upper de mesh respirable y mediasuela con amortiguación. Para entrenar o para el día a día.",
+      "featured": false
     },
     {
       "title": "Botas de Cuero Marrón",
       "category": "calzado",
       "price": 95000,
       "stock": 4,
-      "image": "/images/botas-cuero-marron.svg",
-      "description": "Botas de cuero vacuno marrón con costuras reforzadas y suela antideslizante. Estilo rústico y duradero."
+      "image": "/images/botas-cuero-marron.webp",
+      "description": "Botas de cuero vacuno marrón con costuras reforzadas y suela antideslizante. Estilo rústico y duradero.",
+      "featured": false
     },
     {
       "title": "Gorra Trucker Negra",
       "category": "accesorios",
       "price": 14500,
       "stock": 15,
-      "image": "/images/gorra-trucker-negra.svg",
-      "description": "Gorra trucker negra con frente de algodón y espalda de red. Broche regulable tipo snapback."
+      "image": "/images/gorra-trucker-negra.webp",
+      "description": "Gorra trucker negra con frente de algodón y espalda de red. Broche regulable tipo snapback.",
+      "featured": false
     },
     {
       "title": "Mochila Urbana Gris",
       "category": "accesorios",
       "price": 52000,
       "stock": 8,
-      "image": "/images/mochila-urbana-gris.svg",
-      "description": "Mochila urbana gris con compartimento acolchado para notebook de 15\", bolsillo frontal y espalda ergonómica."
+      "image": "/images/mochila-urbana-gris.webp",
+      "description": "Mochila urbana gris con compartimento acolchado para notebook de 15\", bolsillo frontal y espalda ergonómica.",
+      "featured": true
     },
     {
       "title": "Cinturón de Cuero",
       "category": "accesorios",
       "price": 16800,
       "stock": 11,
-      "image": "/images/cinturon-cuero.svg",
-      "description": "Cinturón de cuero genuino color suela con hebilla metálica mate. Ancho 3,5 cm."
+      "image": "/images/cinturon-cuero.webp",
+      "description": "Cinturón de cuero genuino color suela con hebilla metálica mate. Ancho 3,5 cm.",
+      "featured": false
     }
   ]
 }

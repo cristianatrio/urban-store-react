@@ -12,6 +12,10 @@
  * Si las colecciones ya tienen documentos, NO borra nada: solo informa.
  * Para recargar desde cero, pasar el flag --force:
  *   node --env-file=.env scripts/seed.js --force
+ *
+ * Para actualizar fotos, textos y destacados sin tocar el stock (ni los ids
+ * que ya usan las ordenes), pasar el flag --update:
+ *   node --env-file=.env scripts/seed.js --update
  */
 import { initializeApp } from 'firebase/app';
 import {
@@ -20,6 +24,7 @@ import {
   getDocs,
   addDoc,
   deleteDoc,
+  updateDoc,
   doc,
 } from 'firebase/firestore';
 import { readFileSync } from 'node:fs';
@@ -51,6 +56,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const force = process.argv.includes('--force');
+const update = process.argv.includes('--update');
 
 async function seedCollection(name, docs) {
   const ref = collection(db, name);
@@ -74,7 +80,31 @@ async function seedCollection(name, docs) {
   console.log(`Coleccion "${name}" lista.`);
 }
 
+// Actualiza los documentos existentes buscando por matchField (key o title).
+// El stock nunca se pisa: lo maneja la tienda con cada compra.
+async function updateCollection(name, docs, matchField) {
+  const existing = await getDocs(collection(db, name));
+  const idByMatch = new Map(existing.docs.map((d) => [d.data()[matchField], d.id]));
+
+  for (const { stock, ...fields } of docs) {
+    const id = idByMatch.get(fields[matchField]);
+    if (id) {
+      await updateDoc(doc(db, name, id), fields);
+    } else {
+      console.log(`"${fields[matchField]}" no existe en "${name}". Se crea.`);
+      await addDoc(collection(db, name), stock === undefined ? fields : { ...fields, stock });
+    }
+  }
+  console.log(`Coleccion "${name}" actualizada (${docs.length} documentos).`);
+}
+
 try {
+  if (update) {
+    await updateCollection('categories', data.categories, 'key');
+    await updateCollection('items', data.items, 'title');
+    console.log('Actualizacion finalizada con exito.');
+    process.exit(0);
+  }
   await seedCollection('categories', data.categories);
   await seedCollection('items', data.items);
   console.log('Seed finalizado con exito.');

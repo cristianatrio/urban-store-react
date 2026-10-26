@@ -1,0 +1,314 @@
+/* ---------- Hero: foto a sangre + afiche pegado ---------- */
+
+.hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: clamp(520px, 76vh, 760px);
+  overflow: hidden;
+  background: var(--asphalt);
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 30%;
+}
+
+.hero-poster {
+  position: relative;
+  z-index: 1;
+  width: min(560px, 100% - 2 * var(--gutter));
+  margin: 0 0 56px max(var(--gutter), (100% - var(--container)) / 2);
+  padding: 36px 32px 30px;
+  border-radius: var(--radius-s);
+  background: var(--sticker);
+  color: var(--asphalt);
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.35);
+  transform: rotate(-1.2deg);
+  animation: poster-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s both;
+}
+
+/* Cinta de papel en las esquinas del afiche */
+.hero-poster::before,
+.hero-poster::after {
+  content: '';
+  position: absolute;
+  top: -11px;
+  width: 76px;
+  height: 24px;
+  background: rgb(255 255 255 / 0.6);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+}
+
+.hero-poster::before {
+  left: 22px;
+  transform: rotate(-7deg);
+}
+
+.hero-poster::after {
+  right: 26px;
+  transform: rotate(5deg);
+}
+
+.hero-title {
+  margin-bottom: 16px;
+  font-size: clamp(2.5rem, 5.2vw, 4.25rem);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+}
+
+.hero-text {
+  max-width: 42ch;
+  margin-bottom: 24px;
+  font-size: 1.0625rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@keyframes poster-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px) rotate(-4deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-1.2deg);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: min(720px, calc(100svh - 64px));
+  }
+
+  /* La cara de la modelo esta sobre el borde izquierdo del recorte vertical */
+  .hero-image {
+    object-position: 0% 30%;
+  }
+
+  .hero-poster {
+    margin: 0 var(--gutter) 24px;
+    width: auto;
+    padding: 26px 20px 20px;
+    transform: rotate(-1deg);
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .hero-text {
+    margin-bottom: 18px;
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 0;
+    padding-inline: 10px;
+    font-size: 0.9375rem;
+  }
+}
+
+/* ---------- Beneficios ---------- */
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+}
+
+.benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.benefit .icon {
+  flex-shrink: 0;
+  color: var(--asphalt);
+}
+
+.benefit strong {
+  display: block;
+  color: var(--asphalt);
+  font-size: 1rem;
+}
+
+@media (max-width: 720px) {
+  .benefits {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 24px 0;
+  }
+}
+
+/* ---------- Secciones ---------- */
+
+.home-section {
+  padding-top: 64px;
+  scroll-margin-top: 72px;
+}
+
+.section-title {
+  margin-bottom: 24px;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.section-foot {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+/* ---------- Categorias ---------- */
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.category-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-s);
+  background: var(--asphalt);
+  color: var(--paper);
+}
+
+.category-card:focus-visible {
+  outline: 3px solid var(--asphalt);
+  outline-offset: 3px;
+}
+
+.category-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Degradado inferior para que el texto se lea sobre cualquier foto */
+.category-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(29 31 34 / 0.92) 0%, rgb(29 31 34 / 0.6) 32%, transparent 62%);
+}
+
+.category-card-body {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+}
+
+.category-card-name {
+  font-stretch: 125%;
+  font-weight: 800;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.category-card-tagline {
+  color: #e4e6e9;
+  font-size: 0.875rem;
+}
+
+.category-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  align-self: flex-start;
+  margin-top: 14px;
+  padding: 7px 10px 7px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  color: var(--asphalt);
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: background-color 0.2s ease;
+}
+
+.category-card-cta .icon {
+  transition: transform 0.25s ease;
+}
+
+.category-card:hover .category-card-image,
+.category-card:focus-visible .category-card-image {
+  transform: scale(1.07);
+}
+
+.category-card:hover .category-card-cta,
+.category-card:focus-visible .category-card-cta {
+  background: var(--sticker);
+}
+
+.category-card:hover .category-card-cta .icon,
+.category-card:focus-visible .category-card-cta .icon {
+  transform: translateX(3px);
+}
+
+@media (max-width: 1024px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .category-card {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* En celular las categorias se deslizan de costado */
+@media (max-width: 720px) {
+  .category-grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 74%;
+    gap: 12px;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 0 var(--gutter) 8px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .category-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-card {
+    aspect-ratio: 3 / 4;
+    scroll-snap-align: start;
+  }
+}

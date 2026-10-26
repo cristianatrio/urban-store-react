@@ -1,49 +1,45 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getItem } from '../services/firestore';
 import ItemDetail from './ItemDetail';
 
 export default function ItemDetailContainer() {
   const { id } = useParams();
   const [item, setItem] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [notFound, setNotFound] = useState(false);
+  const [status, setStatus] = useState('loading');
 
   useEffect(() => {
-    setLoading(true);
-    setNotFound(false);
+    setStatus('loading');
     getItem(id)
       .then((product) => {
-        if (product) {
-          setItem(product);
-        } else {
-          setNotFound(true);
-        }
+        setItem(product);
+        setStatus(product ? 'ready' : 'not-found');
       })
       .catch((err) => {
         console.error('Error cargando producto:', err);
-        setNotFound(true);
-      })
-      .finally(() => setLoading(false));
+        setStatus('error');
+      });
   }, [id]);
 
-  if (loading) {
+  if (status === 'loading') {
+    return <div className="loader page-loader" aria-label="Cargando producto" />;
+  }
+
+  if (status !== 'ready') {
     return (
-      <div className="loader-container">
-        <div className="loader" />
-        <p>Cargando producto…</p>
+      <div className="empty-state container">
+        <h1>{status === 'not-found' ? 'Este producto no existe' : 'No pudimos cargar el producto'}</h1>
+        <p>
+          {status === 'not-found'
+            ? 'Puede que el link esté mal escrito o que el producto ya no esté en el catálogo.'
+            : 'Revisá tu conexión y recargá la página.'}
+        </p>
+        <Link to="/catalogo" className="btn btn-primary">
+          Ver el catálogo
+        </Link>
       </div>
     );
   }
 
-  if (notFound) {
-    return (
-      <div className="message error">
-        <h2>Producto no encontrado 😕</h2>
-        <p>El producto que estás buscando no existe o fue eliminado del catálogo.</p>
-      </div>
-    );
-  }
-
-  return <ItemDetail item={item} />;
+  return <ItemDetail key={item.id} item={item} />;
 }
