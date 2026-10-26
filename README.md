@@ -14,6 +14,18 @@ Es mi proyecto final del curso de **React JS de CoderHouse**.
 
 ▶️ [Ver el video completo (1 minuto y medio)](docs/demo.mp4)
 
+## 💡 La idea
+
+Elegí ropa urbana y quise que se sintiera como una tienda online de verdad:
+
+- La portada muestra una foto grande, las categorías y lo más elegido, sin
+  amontonar todo.
+- El catálogo completo tiene su propia página, con filtros para encontrar rápido
+  lo que buscás.
+- Al agregar algo al carrito, la tienda te sugiere con qué combinarlo y te avisa
+  cuánto te falta para el envío gratis.
+- Si te olvidaste de algo, podés modificar tu pedido después de comprar.
+
 ## ✨ Qué podés hacer
 
 - **Recorrer el catálogo** por categoría, buscar por nombre y ordenar por precio.
@@ -135,7 +147,7 @@ funcione al recargar. `index.html` no se cachea; los archivos de `assets/` sí.
 </details>
 
 <details>
-<summary><strong>Estructura del proyecto y librerías</strong></summary>
+<summary><strong>Estructura del proyecto y librerías usadas (con su justificación)</strong></summary>
 
 ```
 src/
